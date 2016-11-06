@@ -6,6 +6,10 @@
     "react-scripts": "0.7.0"
   },
   "dependencies": {
+    "aframe": "^0.3.2",
+    "aframe-animation-component": "^3.0.4",
+    "aframe-react": "^3.4.0",
+    "aframe-text-component": "^0.3.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
