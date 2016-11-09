@@ -1,41 +1,28 @@
 import 'aframe';
 import 'aframe-animation-component';
 import 'aframe-text-component';
-// import 'babel-polyfill';
 import { Entity, Scene } from 'aframe-react';
 import React from 'react';
-// import ReactDOM from 'react-dom';
 
 import Camera from './components/Camera';
 import Text from './components/Text';
 import Sky from './components/Sky';
 
 class VRScene extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { color: 'red' };
-  }
-
-  changeColor() {
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue'];
-    this.setState({
-      color: colors[Math.floor(Math.random() * colors.length)],
-    });
-  }
-
   render() {
+    const { camera } = this.props; 
     return (
       <Scene>
-        <Camera>
-          <a-cursor
+        <Camera position={`${camera.x} ${camera.y} ${camera.z}`}>
+          {/* <a-cursor
             animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-          />
+          /> */}
         </Camera>
 
-        <Sky src="url(https://rawgit.com/aframevr/assets/gh-pages/360-image-gallery-boilerplate/img/sechelt.jpg)" />
+        <Sky src="url(images/skydome.jpg)" />
 
         <Text
-          text="Hello World!"
+          text="Hedroner Than Light!"
           color="#DADADA"
           position="-1.75 1 -3"
         />
@@ -44,20 +31,13 @@ class VRScene extends React.Component {
         <Entity light={{ type: 'directional', intensity: 0.5 }} position="-1 1 0" />
         <Entity light={{ type: 'directional', intensity: 1 }} position="1 1 0" />
 
-        <Entity
-          animation__rot={{ property: 'rotation', dur: 2000, loop: true, to: '360 360 360' }}
-          animation__sca={{ property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '1.1 1.1 1.1' }}
-          geometry="primitive: box"
-          material={{ color: this.state.color, opacity: 0.6 }}
-          position="0 -0.5 -3"
-          onClick={this.changeColor.bind(this)}
-        >
-          <Entity
-            animation__scale={{ property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '2 2 2' }}
-            geometry="primitive: box; depth: 0.2; height: 0.2; width: 0.2"
-            material={{ color: '#24CAFF' }}
-          />
-        </Entity>
+        <a-assets>
+          <a-asset-item id="tree-obj" src="assets/spaceship.obj"></a-asset-item>
+        </a-assets>
+        <a-entity
+          obj-model="obj: #tree-obj; mtl: #tree-mtl"
+          position="0 0 -3"
+        />
       </Scene>
     );
   }
