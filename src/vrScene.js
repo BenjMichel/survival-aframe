@@ -10,7 +10,7 @@ import Sky from './components/Sky';
 
 class VRScene extends React.Component {
   render() {
-    const { camera } = this.props; 
+    const { camera } = this.props;
     return (
       <Scene>
         <Camera position={`${camera.x} ${camera.y} ${camera.z}`}>

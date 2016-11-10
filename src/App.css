@@ -22,3 +22,10 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.timer {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+}

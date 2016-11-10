@@ -4,6 +4,7 @@ import './App.css';
 import VRScene from './vrScene';
 import gameLogic from './gameLogic';
 import cameraListener from './cameraListener';
+import Timer from './Timer';
 
 class App extends Component {
   constructor() {
@@ -22,6 +23,9 @@ class App extends Component {
     return (
       <div className="App">
         <VRScene camera={this.state.camera} />
+        <div className="timer">
+          <Timer />
+        </div>
       </div>
     );
   }
