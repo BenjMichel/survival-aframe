@@ -21,8 +21,7 @@ export default function init(newPositionCallback) {
 
 
   draw();
-  const elem = document.querySelector('.scene-container');
-  elem.addEventListener('camera', (e) => {
+  document.querySelector('.scene-container').addEventListener('camera', (e) => {
     if (e.detail.name === 'position') {
       position = e.detail.newData;
     } else if (e.detail.name === 'rotation') {

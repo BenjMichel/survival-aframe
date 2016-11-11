@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import VRScene from './vrScene';
-import gameLogic from './gameLogic';
-import cameraListener from './cameraListener';
-import Timer from './Timer';
+import gameLogic from './logic/gameLogic';
+import cameraListener from './logic/cameraListener';
+import Timer from './components/Timer';
 
 class App extends Component {
   constructor() {
