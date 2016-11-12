@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import VRScene from './vrScene';
 import gameLogic from './logic/gameLogic';
 import cameraListener from './logic/cameraListener';
 import Timer from './components/Timer';
+import Store from './logic/store';
 
 class App extends Component {
   constructor() {
@@ -12,11 +12,14 @@ class App extends Component {
     this.state = {
       camera: { x: 0, y: 0, z: 0 },
     };
+    this.store = new Store();
+    this.store.subscribe(state => this.setState({ camera: state.camera }));
   }
 
   componentDidMount() {
-    gameLogic(newPosition => this.setState({ camera: newPosition }));
-    cameraListener();
+    const eventElement = document.querySelector('.scene-container');
+    gameLogic(eventElement);
+    cameraListener(eventElement);
   }
 
   render() {

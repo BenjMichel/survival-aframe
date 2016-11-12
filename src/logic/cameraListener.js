@@ -1,7 +1,6 @@
-export default function init() {
-  document.querySelector('[camera]').addEventListener('componentchanged', function (evt) {
-    const elem = document.querySelector('.scene-container');
+export default function init(mainElement) {
+  document.querySelector('[camera]').addEventListener('componentchanged', (evt) => {
     const event = new CustomEvent('camera', { detail: evt.detail });
-    elem.dispatchEvent(event);
+    mainElement.dispatchEvent(event);
   });
 }
