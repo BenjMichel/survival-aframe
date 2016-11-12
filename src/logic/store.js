@@ -29,8 +29,7 @@ const cameraInitialState = {
   rotation: { x: 0, y: 0, z: 0 },
 };
 
-function updateCamera(camera = cameraInitialState, action) {
-  // console.log(camera, action);
+function cameraReducer(camera = cameraInitialState, action) {
   switch (action.type) {
     case 'CAMERA_MOVE':
       return {
@@ -55,7 +54,7 @@ function updateCamera(camera = cameraInitialState, action) {
   }
 }
 
-function updateEnnemies(ennemies = [], action) {
+function ennemiesReducer(ennemies = [], action) {
   switch (action.type) {
     case 'ENNEMI_POP':
       return [...ennemies, {}];
@@ -64,10 +63,20 @@ function updateEnnemies(ennemies = [], action) {
   }
 }
 
+function gameStateReducer(gameState = {}, action) {
+  switch (action.type) {
+    case 'START_GAME':
+      return { ...gameState, begin: new Date().getTime() };
+    default:
+      return gameState;
+  }
+}
+
 Store.prototype.reduce = function (state, action) {
   return {
-    ennemies: updateEnnemies(state.ennemies, action),
-    camera: updateCamera(state.camera, action),
+    ennemies: ennemiesReducer(state.ennemies, action),
+    camera: cameraReducer(state.camera, action),
+    gameState: gameStateReducer(state.gameState, action),
   };
 };
 

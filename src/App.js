@@ -13,12 +13,17 @@ class App extends Component {
       camera: { x: 0, y: 0, z: 0 },
     };
     this.store = new Store();
-    this.store.subscribe(state => this.setState({ camera: state.camera.position }));
+    this.store.subscribe(state => this.setState({
+      camera: state.camera.position,
+      begin: state.gameState.begin,
+      end: state.gameState.end,
+    }));
   }
 
   componentDidMount() {
     gameLogic(this.store);
     cameraListener(this.store);
+    this.store.dispatch({ type: 'START_GAME' });
   }
 
   render() {
@@ -26,7 +31,7 @@ class App extends Component {
       <div className="App">
         <VRScene camera={this.state.camera} />
         <div className="timer">
-          <Timer />
+          <Timer begin={this.state.begin} end={this.state.end} />
         </div>
       </div>
     );
