@@ -24,13 +24,31 @@ Store.prototype.dispatch = function (action) {
   return action;
 };
 
-function updateCamera(camera = { x: 0, y: 0, z: 0 }, action) {
+const cameraInitialState = {
+  position: { x: 0, y: 0, z: 0 },
+  rotation: { x: 0, y: 0, z: 0 },
+};
+
+function updateCamera(camera = cameraInitialState, action) {
+  // console.log(camera, action);
   switch (action.type) {
     case 'CAMERA_MOVE':
       return {
-        x: camera.x + action.x,
-        y: camera.y + action.y,
-        z: camera.z + action.z,
+        ...camera,
+        position: {
+          x: camera.position.x + action.x,
+          y: camera.position.y + action.y,
+          z: camera.position.z + action.z,
+        },
+      };
+    case 'CAMERA_ROTATION':
+      return {
+        ...camera,
+        rotation: {
+          x: action.x,
+          y: action.y,
+          z: action.z,
+        },
       };
     default:
       return camera;

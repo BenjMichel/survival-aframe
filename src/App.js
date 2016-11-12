@@ -13,13 +13,12 @@ class App extends Component {
       camera: { x: 0, y: 0, z: 0 },
     };
     this.store = new Store();
-    this.store.subscribe(state => this.setState({ camera: state.camera }));
+    this.store.subscribe(state => this.setState({ camera: state.camera.position }));
   }
 
   componentDidMount() {
-    const eventElement = document.querySelector('.scene-container');
-    gameLogic(eventElement);
-    cameraListener(eventElement);
+    gameLogic(this.store);
+    cameraListener(this.store);
   }
 
   render() {

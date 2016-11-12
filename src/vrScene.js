@@ -2,7 +2,7 @@ import 'aframe';
 import 'aframe-animation-component';
 import 'aframe-text-component';
 import { Entity, Scene } from 'aframe-react';
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Camera from './components/Camera';
 import Text from './components/Text';
@@ -43,6 +43,12 @@ class VRScene extends React.Component {
   }
 }
 
-export default VRScene;
+VRScene.propTypes = {
+  camera: PropTypes.shape({
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+    z: PropTypes.number.isRequired,
+  }).isRequired,
+};
 
-// ReactDOM.render(<VRScene/>, document.querySelector('.scene-container'));
+export default VRScene;

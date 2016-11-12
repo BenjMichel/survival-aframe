@@ -1,6 +1,8 @@
-export default function init(mainElement) {
+export default function init(store) {
   document.querySelector('[camera]').addEventListener('componentchanged', (evt) => {
-    const event = new CustomEvent('camera', { detail: evt.detail });
-    mainElement.dispatchEvent(event);
+    if (evt.detail.name === 'rotation') {
+      const { x, y, z } = evt.detail.newData;
+      store.dispatch({ type: 'CAMERA_ROTATION', x, y, z });
+    }
   });
 }
