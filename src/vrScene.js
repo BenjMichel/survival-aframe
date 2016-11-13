@@ -14,8 +14,6 @@ const VRScene = ({ camera, ennemies }) => (
     <Sky src="url(images/skydome.jpg)" />
 
     <Entity light={{ type: 'ambient', color: '#888' }} />
-    {/* <Entity light={{ type: 'directional', intensity: 0.5 }} position="-1 1 0" />
-    <Entity light={{ type: 'directional', intensity: 1 }} position="1 1 0" /> */}
 
     {ennemies.map((ennemy, index) => // TODO: do not use index as key
       <a-sphere

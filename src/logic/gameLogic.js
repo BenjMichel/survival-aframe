@@ -1,4 +1,4 @@
-const COEFF = 100;
+const PLAYER_SPEED = 0.1;
 
 const newPlayerPosition = (store) => {
   const rotation = store.getState().camera.rotation;
@@ -8,9 +8,9 @@ const newPlayerPosition = (store) => {
   const z = Math.sin(pitch);
   const x = xzLen * Math.sin(-yaw);
   return {
-    x: x / COEFF,
-    y: z / COEFF,
-    z: y / COEFF,
+    x: x * PLAYER_SPEED,
+    y: z * PLAYER_SPEED,
+    z: y * PLAYER_SPEED,
   };
 };
 
