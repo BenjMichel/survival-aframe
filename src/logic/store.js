@@ -1,3 +1,7 @@
+import ennemiesReducer from './reducers/ennemiesReducer';
+import cameraReducer from './reducers/cameraReducer';
+import gameStateReducer from './reducers/gameStateReducer';
+
 const subscribers = [];
 
 function Store() {
@@ -23,54 +27,6 @@ Store.prototype.dispatch = function (action) {
 
   return action;
 };
-
-const cameraInitialState = {
-  position: { x: 0, y: 0, z: 0 },
-  rotation: { x: 0, y: 0, z: 0 },
-};
-
-function cameraReducer(camera = cameraInitialState, action) {
-  switch (action.type) {
-    case 'CAMERA_MOVE':
-      return {
-        ...camera,
-        position: {
-          x: camera.position.x + action.x,
-          y: camera.position.y + action.y,
-          z: camera.position.z + action.z,
-        },
-      };
-    case 'CAMERA_ROTATION':
-      return {
-        ...camera,
-        rotation: {
-          x: action.x,
-          y: action.y,
-          z: action.z,
-        },
-      };
-    default:
-      return camera;
-  }
-}
-
-function ennemiesReducer(ennemies = [], action) {
-  switch (action.type) {
-    case 'ENNEMI_POP':
-      return [...ennemies, {}];
-    default:
-      return ennemies;
-  }
-}
-
-function gameStateReducer(gameState = {}, action) {
-  switch (action.type) {
-    case 'START_GAME':
-      return { ...gameState, begin: new Date().getTime() };
-    default:
-      return gameState;
-  }
-}
 
 Store.prototype.reduce = function (state, action) {
   return {
