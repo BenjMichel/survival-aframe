@@ -17,6 +17,7 @@ const newPlayerPosition = (store) => {
 export default function init(store) {
   function draw() {
     store.dispatch({ type: 'CAMERA_MOVE', ...newPlayerPosition(store) });
+    store.dispatch({ type: 'ENNEMI_MOVE', target: store.getState().camera.position });
     requestAnimationFrame(draw);
   }
 
