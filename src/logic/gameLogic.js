@@ -20,5 +20,11 @@ export default function init(store) {
     requestAnimationFrame(draw);
   }
 
+  function ennemyPop() {
+    store.dispatch({ type: 'ENNEMI_POP' });
+    setTimeout(() => ennemyPop(), 1000);
+  }
+
+  ennemyPop();
   draw();
 }

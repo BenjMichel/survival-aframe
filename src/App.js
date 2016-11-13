@@ -11,12 +11,14 @@ class App extends Component {
     super();
     this.state = {
       camera: { x: 0, y: 0, z: 0 },
+      ennemies: [],
     };
     this.store = new Store();
     this.store.subscribe(state => this.setState({
       camera: state.camera.position,
       begin: state.gameState.begin,
       end: state.gameState.end,
+      ennemies: state.ennemies,
     }));
   }
 
@@ -29,7 +31,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <VRScene camera={this.state.camera} />
+        <VRScene camera={this.state.camera} ennemies={this.state.ennemies} />
         <div className="timer">
           <Timer begin={this.state.begin} end={this.state.end} />
         </div>
