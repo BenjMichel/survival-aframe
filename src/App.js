@@ -32,7 +32,7 @@ class App extends Component {
     return (
       <div className="App">
         <VRScene camera={this.state.camera} ennemies={this.state.ennemies} />
-        <div className="timer">
+        <div className={this.state.end ? 'end-timer' : 'timer'}>
           <Timer begin={this.state.begin} end={this.state.end} />
         </div>
       </div>

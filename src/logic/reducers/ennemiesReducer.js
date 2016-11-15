@@ -1,4 +1,5 @@
-const SPEED = 20;
+const SPEED = 10;
+const SPREAD_FACTOR = 1000;
 
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
@@ -17,9 +18,9 @@ export default function ennemiesReducer(ennemies = [], action) {
       }
       return [...ennemies, {
         color: getRandomColor(),
-        x: (Math.random() - 0.5) * 100,
-        y: (Math.random() - 0.5) * 100,
-        z: (Math.random() - 0.5) * 100,
+        x: (Math.random() - 0.5) * SPREAD_FACTOR,
+        y: (Math.random() - 0.5) * SPREAD_FACTOR,
+        z: (Math.random() - 0.5) * SPREAD_FACTOR,
       }];
     case 'ENNEMI_MOVE': {
       const { target } = action;
