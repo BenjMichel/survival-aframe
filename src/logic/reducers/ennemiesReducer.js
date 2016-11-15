@@ -12,6 +12,9 @@ function getRandomColor() {
 export default function ennemiesReducer(ennemies = [], action) {
   switch (action.type) {
     case 'ENNEMI_POP':
+      if (ennemies.length > 10) {
+        return ennemies;
+      }
       return [...ennemies, {
         color: getRandomColor(),
         x: (Math.random() - 0.5) * 100,
