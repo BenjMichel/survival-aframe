@@ -11,7 +11,7 @@ const VRScene = ({ camera, ennemies }) => (
   <Scene>
     <Camera position={`${camera.x} ${camera.y} ${camera.z}`} />
 
-    <Sky src="url(images/skydome.jpg)" />
+    <Sky src="url(images/skydome.jpg)" position={`${camera.x} ${camera.y} ${camera.z}`} />
 
     <Entity light={{ type: 'ambient', color: '#888' }} />
 

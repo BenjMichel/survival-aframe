@@ -6,5 +6,6 @@ export default props => (
     geometry={{ primitive: 'sphere', radius: 100 }}
     material={{ shader: 'flat', src: props.src }}
     scale="1 1 -1"
+    position={props.position || '0 0 0'}
   />
 );
